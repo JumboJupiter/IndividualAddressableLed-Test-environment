@@ -1,28 +1,40 @@
 /*
-Version - 1.0
+Version -`1.0
 Francis O'Donovan
-1-29-2026
+2-07-2026
 
-Made for testing Light programs with a grid of leds.  for testing core functions (brake, running, turn,
- reverse) as well as party functions (cool designs, text, ect) 
+Simple testing before realworld construction
+
 */
+#include <iostream>
+#include <cstdlib>  // system("cls")
 
-//class for simple SFML graphics for drawing grid.
-#include <SFML/Graphics.hpp>
+const int GRID_WIDTH  = 12;
+const int GRID_HEIGHT = 6;
 
-int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 300), "Pixel Simulator");
+bool grid[GRID_HEIGHT][GRID_WIDTH];
 
-    while (window.isOpen()){
-        sf::Event event;
-        while (window.pollEvent(event)){
-            if (event.type == sf::Event::Closed){
-                window.close();
-            }
-
+void clearGrid() {
+    for (int y = 0; y < GRID_HEIGHT; y++) {
+        for (int x = 0; x < GRID_WIDTH; x++) {
+            grid[y][x] = false;
         }
-        window.clear();
-        window.display();
     }
+}
+
+void printGrid() {
+    system("cls");  // Clear console (Windows)
+
+    for (int y = 0; y < GRID_HEIGHT; y++) {
+        for (int x = 0; x < GRID_WIDTH; x++) {
+            std::cout << (grid[y][x] ? "■ " : "· ");
+        }
+        std::cout << "\n";
+    }
+}
+
+int main (){
+    printGrid();
+    clearGrid();
     return 0;
 }
