@@ -9,8 +9,8 @@ Simple testing before realworld construction
 #include <iostream>
 #include <cstdlib>  // system("cls")
 
-const int GRID_WIDTH  = 12;
-const int GRID_HEIGHT = 6;
+const int GRID_WIDTH  = 20;
+const int GRID_HEIGHT = 10;
 
 bool grid[GRID_HEIGHT][GRID_WIDTH];
 
