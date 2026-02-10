@@ -40,17 +40,37 @@ void SetAll(int r, int g, int b) {
     }
 }
 
-// allows console to "show" color by using squares
+// allows console to "show" color by using squares 
+//before used simple charters to repersent colors, chat gpt came up with this soultion and code.
+
 const char* ColorToSymbol(const Color& c) {
-    if (c.r == 0 && c.g == 0 && c.b == 0) return "· ";
 
-    if (c.r > c.g && c.r > c.b) return "R ";
-    if (c.g > c.r && c.g > c.b) return "G ";
-    if (c.b > c.r && c.b > c.g) return "B ";
-    if (c.r == c.g && c.b == 0) return "Y ";
-    if (c.r == c.b && c.b == c.g) return "W ";
+    // off or black
+    if (c.r == 0 && c.g == 0 && c.b == 0)
+        return "\033[40m  \033[0m"; // black
 
-    return "# "; // mixed or white
+    // red
+    if (c.r > c.g && c.r > c.b)
+        return "\033[41m  \033[0m";
+
+    // green
+    if (c.g > c.r && c.g > c.b)
+        return "\033[42m  \033[0m";
+
+    // blue
+    if (c.b > c.r && c.b > c.g)
+        return "\033[44m  \033[0m";
+
+    // yellow (R + G)
+    if (c.r == c.g && c.b == 0)
+        return "\033[43m  \033[0m";
+
+    // white (R + G + B)
+    if (c.r == c.g && c.g == c.b)
+        return "\033[47m  \033[0m";
+
+    // catchAll / MIXED
+    return "\033[45m  \033[0m"; // magenta (debug color)
 }
 
 void printGrid() {
@@ -66,9 +86,6 @@ void printGrid() {
 
 int main (){
     clearGrid();
-    printGrid();
-    
-    SetAll(255,255,255);
     printGrid();
 
     return 0;
