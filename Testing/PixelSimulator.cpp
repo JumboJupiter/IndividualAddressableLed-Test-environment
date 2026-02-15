@@ -10,13 +10,10 @@ leds just like real world product will.
 */
 #include <iostream>
 #include <cstdlib>  // system("cls")
-#include "SectorCreator.cpp" //script for creating sectors
 
-struct Color {
-    int r;
-    int g;
-    int b;
-};
+#include "SectorCreator.h" //script for creating sectors 
+#include "PixelSimulator.h" // headder that makes certin parts of this script usable across the project.
+
 
 const int GRID_WIDTH  = 36;
 const int GRID_HEIGHT = 12;
@@ -31,6 +28,17 @@ void clearGrid() {
             grid[y][x] = {0, 0, 0}; //insead of "flase" meaning off grid now clears to "black"
         }
     }
+}
+
+void SetPixel(int x, int y, int r, int g, int b)
+{
+    if (x >= 0 && x < GRID_WIDTH &&
+        y >= 0 && y < GRID_HEIGHT)
+    {
+        grid[y][x].r = r;
+        grid[y][x].g = g;
+        grid[y][x].b = b;
+    }  
 }
 
 void SetAll(int r, int g, int b) {
@@ -87,6 +95,7 @@ void printGrid() {
 
 int main (){
     clearGrid();
+    SetAll(255,0,0);
     ApplySectorColor(LeftTurn, 255, 255, 0);
     printGrid();
     return 0;
