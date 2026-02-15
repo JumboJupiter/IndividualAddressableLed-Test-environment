@@ -7,6 +7,7 @@ responcible for defigning sectors for the different light functions.
 Break, reverse, turn, running,
 */
 #include <string>
+#include "PixelSimulator.h" // for GRID" vars
 
 const int Height = GRID_HEIGHT;
 const int Width = GRID_WIDTH;
@@ -37,3 +38,15 @@ const Sector LeftTurn = {
     LeftTurnPixels,
     sizeof(LeftTurnPixels) / sizeof(Pixel)
 };
+
+// -------- END OF DEFINITIONS ------------ //
+
+void ApplySectorColor(const Sector & sector, int r, int g, int b){
+    for (int i = 0; i < pixelCount; i++){
+        SetPixel(
+            sector.pixels[i].x,
+            sector.pixels[i].y,
+            r, g, b 
+        );
+    }
+}

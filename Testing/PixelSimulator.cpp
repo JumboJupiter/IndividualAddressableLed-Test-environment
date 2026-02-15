@@ -10,6 +10,7 @@ leds just like real world product will.
 */
 #include <iostream>
 #include <cstdlib>  // system("cls")
+#include "SectorCreator.cpp" //script for creating sectors
 
 struct Color {
     int r;
@@ -86,7 +87,7 @@ void printGrid() {
 
 int main (){
     clearGrid();
+    ApplySectorColor(LeftTurn, 255, 255, 0);
     printGrid();
-
     return 0;
 }
